@@ -20,18 +20,13 @@ const port = process.env.PORT || 5000;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { name, width, height } = req.query;
-        if (!name || !width || !height || +width <= 0 || +height <= 0)
-            throw new Error("Wrong inputs");
-        const { data, error } = yield (0, sharpResizer_1.default)(name, width, height);
-        if (error.message)
-            throw new Error(error.message);
-        res.sendFile(data);
-    }
-    catch (error) {
-        res.status(400).json({ msg: error.message });
-    }
+    const { name, width, height } = req.query;
+    if (!name || !width || !height || +width <= 0 || +height <= 0)
+        return res.status(400).json({ msg: "wrong input" });
+    const { data, error } = yield (0, sharpResizer_1.default)(name, width, height);
+    if (error.message)
+        return res.status(400).json({ msg: error.message });
+    res.sendFile(data);
 }));
 app.listen(port, () => console.log(`SERVER IS UP AND RUNNING ON PORT: ${port}`));
 exports.default = app;

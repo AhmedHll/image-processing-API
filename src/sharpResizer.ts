@@ -2,7 +2,16 @@ import fs from "fs";
 import path from "path";
 import sharp from "sharp";
 
-export default async (name: string, width: string, height: string) => {
+export default async (
+  name: string,
+  width: string,
+  height: string
+): Promise<{
+  data: string;
+  error: {
+    message: string;
+  };
+}> => {
   try {
     const inputFile = path.join(process.cwd(), `/images/${name}.jpg`);
     const outputFile = path.join(process.cwd(), `/images/thumbnails`);
