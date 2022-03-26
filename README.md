@@ -28,7 +28,7 @@ After downloading the project here's a couple of things you should do in order t
 | lint-fix| eslint . --ext .ts --fix |
 | prettier| prettier --config .prettierrc \"src/**/*.ts\" --write |
 
-- Then open your browser and go to `http://localhost:5000` or with the written port in your .env file.
+- Then open your browser and go to `http://localhost:5000/?name=fjord&width=500&height=400`
 
 ## Documentation
 
